@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIKORA | Cada venta, en orden</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>TIKORA<span>.</span></h1>
+                <p>Cada venta, en orden.</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">🏠 Inicio</a>
+                <a href="#" class="nav-item">🧾 Crear recibo</a>
+                <a href="#" class="nav-item">📦 Productos</a>
+                <a href="#" class="nav-item">📋 Historial</a>
+                <a href="#" class="nav-item">📊 Estadísticas</a>
+                <a href="#" class="nav-item">⚙️ Configuración</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-help">
+                    <h3>Organiza tu negocio</h3>
+                    <p>Controla tus ventas de manera fácil y rápida.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+            <!-- BARRA SUPERIOR -->
+            <header class="topbar">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+
+                <div class="topbar-user">
+                    <span class="notification">🔔</span>
+                    <div class="user-info">
+                        <strong>Juan Díaz</strong>
+                        <small>Administrador</small>
+                    </div>
+                    <div class="user-avatar">JD</div>
+                </div>
+            </header>
+
+            <!-- BIENVENIDA -->
+            <section class="welcome-banner">
+                <div class="welcome-text">
+                    <span class="welcome-tag">PANEL PRINCIPAL</span>
+                    <h2>¡Hola, Juan! 👋</h2>
+                    <p>Este es el resumen de tu negocio. ¡Que tengas un excelente día!</p>
+                    <button id="newSaleButton" class="primary-button">
+                        + Crear nuevo recibo
+                    </button>
+                </div>
+            </section>
+
+            <!-- TARJETAS DE ESTADÍSTICAS -->
+            <section class="stats-grid">
+
+                <article class="stat-card blue">
+                    <div class="stat-top">
+                        <div class="stat-icon">💰</div>
+                        <span class="stat-label">Ventas hoy</span>
+                    </div>
+                    <h3 id="todaySales">$0</h3>
+                    <p class="stat-change">Ventas del día</p>
+                </article>
+
+                <article class="stat-card purple">
+                    <div class="stat-top">
+                        <div class="stat-icon">🧾</div>
+                        <span class="stat-label">Recibos creados</span>
+                    </div>
+                    <h3 id="receiptCount">0</h3>
+                    <p class="stat-change">Total de recibos</p>
+                </article>
+
+                <article class="stat-card green">
+                    <div class="stat-top">
+                        <div class="stat-icon">👥</div>
+                        <span class="stat-label">Clientes atendidos</span>
+                    </div>
+                    <h3 id="customerCount">0</h3>
+                    <p class="stat-change">Clientes registrados</p>
+                    <div class="mini-chart"></div>
+                </article>
+
+                <article class="stat-card orange">
+                    <div class="stat-top">
+                        <div class="stat-icon">📈</div>
+                        <span class="stat-label">Total del mes</span>
+                    </div>
+                    <h3 id="monthSales">$0</h3>
+                    <p class="stat-change">Acumulado mensual</p>
+                    <div class="mini-chart"></div>
+                </article>
+
+            </section>
+
+            <!-- ÚLTIMOS RECIBOS -->
+            <section class="bottom-grid">
+                <div class="recent-receipts">
+                    <div class="section-heading">
+                        <h2>🕒 Últimos recibos</h2>
+                        <button class="view-all-button">Ver todos →</button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>N.º Recibo</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="receiptsTable">
+                                <tr>
+                                    <td colspan="5">Aún no hay ventas registradas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PANEL PROMOCIONAL -->
+                <div class="promo-panel">
+                    <div class="promo-content">
+                        <span class="promo-icon">✨</span>
+                        <h2>¡TIKORA hace<br>tu trabajo más fácil!</h2>
+                        <p>Crea recibos, lleva el control de tus ventas y haz crecer tu negocio.</p>
+                        <button class="promo-button">Conoce más →</button>
+                    </div>
+                </div>
+            </section>
+
+<!-- PANTALLA DE HISTORIAL -->
+<section id="historySection" style="display: none; padding: 24px;">
+
+    <h2>Historial de recibos</h2>
+    <p>Aquí puedes consultar todas las ventas registradas en TIKORA.</p>
+
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>N.º Recibo</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody id="historyTable">
+                <tr>
+                    <td colspan="7">Aún no hay ventas registradas.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+<!-- PANTALLA DE PRODUCTOS -->
+<section id="productsSection" style="display: none; padding: 24px;">
+
+    <h2>Mis productos</h2>
+    <p>Administra los productos y sus precios.</p>
+
+    <form id="productForm">
+        <input
+            type="text"
+            id="newProductName"
+            placeholder="Nombre del producto"
+            required
+        >
+
+        <input
+            type="number"
+            id="newProductPrice"
+            placeholder="Precio de venta"
+            min="0"
+            required
+        >
+
+        <button type="submit" class="primary-button">
+            Agregar producto
+        </button>
+    </form>
+
+    <h3>Lista de productos</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+
+        <tbody id="productsTable">
+            <tr>
+                <td colspan="2">Todavía no hay productos.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
+
+
+<!-- PANTALLA DE ESTADÍSTICAS -->
+<section id="statisticsSection" style="display: none; padding: 24px;">
+
+    <h2>Estadísticas de ventas</h2>
+    <p>Consulta el resumen de tu negocio.</p>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Ventas de hoy</h3>
+            <p id="statsTodaySales">$0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Ventas del mes</h3>
+            <p id="statsMonthSales">$0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Recibos registrados</h3>
+            <p id="statsReceiptCount">0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Clientes registrados</h3>
+            <p id="statsCustomerCount">0</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PANTALLA DE ESTADÍSTICAS -->
+<section id="statisticsSection" style="display: none; padding: 24px;">
+
+    <h2>Estadísticas de ventas</h2>
+    <p>Consulta el resumen de tu negocio.</p>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Ventas de hoy</h3>
+            <p id="statsTodaySales">$0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Ventas del mes</h3>
+            <p id="statsMonthSales">$0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Recibos registrados</h3>
+            <p id="statsReceiptCount">0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Clientes registrados</h3>
+            <p id="statsCustomerCount">0</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- PANTALLA DE CONFIGURACIÓN -->
+<section id="settingsSection" style="display: none; padding: 24px;">
+
+    <h2>Configuración</h2>
+    <p>Personaliza TIKORA con los datos de tu negocio.</p>
+
+    <form id="settingsForm">
+
+        <label for="businessName">Nombre del negocio</label>
+        <input
+            type="text"
+            id="businessName"
+            placeholder="Ejemplo: Mi tienda"
+        >
+
+        <label for="businessPhone">Teléfono de contacto</label>
+        <input
+            type="tel"
+            id="businessPhone"
+            placeholder="Número de teléfono"
+        >
+
+        <label for="businessAddress">Dirección del negocio</label>
+        <input
+            type="text"
+            id="businessAddress"
+            placeholder="Dirección del establecimiento"
+        >
+
+        <label for="receiptMessage">Mensaje al final del recibo</label>
+        <textarea
+            id="receiptMessage"
+            rows="3"
+            placeholder="¡Gracias por tu compra!"
+        ></textarea>
+
+        <button type="submit" class="primary-button">
+            Guardar configuración
+        </button>
+
+        <p id="settingsSavedMessage"></p>
+
+    </form>
+
+</section>
+
+            <!-- PIE DE PÁGINA -->
+            <footer class="footer">
+                <p>TIKORA · Cada venta, en orden.</p>
+            </footer>
+
+        </main>
+    </div>
+
+<!-- VENTANA NUEVA VENTA -->
+<div id="saleModal" class="sale-modal" style="display: none;">
+    <div class="sale-modal-content">
+        <div class="sale-modal-header">
+            <h2>Crear nuevo recibo</h2>
+            <button id="closeSaleModal" class="close-modal">&times;</button>
+        </div>
+
+        <p>Ingresa los datos de la venta.</p>
+<div class="receipt-header">
+    <h2 id="receiptBusinessName">Nombre de tu negocio</h2>
+    <p id="receiptBusinessPhone"></p>
+    <p id="receiptBusinessAddress"></p>
+    <hr>
+    <h3>RECIBO DE VENTA</h3>
+</div>
+<div class="receipt-footer">
+    <p id="receiptBusinessMessage">¡Gracias por tu compra!</p>
+</div>
+        <form id="saleForm">
+            <label for="customerName">Nombre del cliente</label>
+            <input type="text" id="customerName" placeholder="Nombre del cliente" required>
+
+            <label for="productName">Producto</label>
+            <input type="text" id="productName" placeholder="Nombre del producto" required>
+
+            <label for="productQuantity">Cantidad</label>
+            <input type="number" id="productQuantity" min="1" value="1" required>
+
+            <label for="productPrice">Precio unitario (COP)</label>
+            <input type="number" id="productPrice" min="0" placeholder="Ej. 15000" required>
+
+            <div class="sale-total">
+                <span>Total de la venta</span>
+                <strong id="saleTotal">$0</strong>
+            </div>
+
+            <button type="submit" class="primary-button">Guardar recibo</button>
+        </form>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
